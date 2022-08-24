@@ -1,0 +1,46 @@
+# ROS Gazebo Controller for Duke Bot
+controller_manager:
+    ros__parameters:
+        update_rate: 100
+
+        joint_state_broadcaster:
+            type: joint_state_broadcaster/JointStateBroadcaster
+
+        wheel1_drive_controller:
+            type: velocity_controllers/JointGroupVelocityController
+
+        wheel2_drive_controller:
+            type: velocity_controllers/JointGroupVelocityController
+
+        wheel3_drive_controller:
+            type: velocity_controllers/JointGroupVelocityController
+
+wheel1_drive_controller:
+    ros__parameters:
+        joints: 
+            - wheel1_joint
+        command_interfaces:
+            - velocity
+        state_interfaces:
+            - position
+            - velocity
+
+wheel2_drive_controller:
+    ros__parameters:
+        joints: 
+            - wheel2_joint
+        command_interfaces:
+            - velocity
+        state_interfaces:
+            - position
+            - velocity
+
+wheel3_drive_controller:
+    ros__parameters:
+        joints: 
+            - wheel3_joint
+        command_interfaces:
+            - velocity
+        state_interfaces:
+            - position
+            - velocity
