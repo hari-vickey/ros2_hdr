@@ -1,0 +1,202 @@
+<?xml version="1.0" ?>
+<robot name="duke_bot" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<transmission name="wheel1_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wheel1_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wheel1_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="wheel2_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wheel2_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wheel2_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="wheel3_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wheel3_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wheel3_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="wheel1_beada_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wheel1_beada_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wheel1_beada_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="wheel1_beadb_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wheel1_beadb_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wheel1_beadb_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="wheel1_beadc_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wheel1_beadc_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wheel1_beadc_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="wheel1_beadd_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wheel1_beadd_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wheel1_beadd_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="wheel1_beade_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wheel1_beade_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wheel1_beade_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="wheel2_beada_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wheel2_beada_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wheel2_beada_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="wheel2_beadb_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wheel2_beadb_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wheel2_beadb_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="wheel2_beadc_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wheel2_beadc_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wheel2_beadc_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="wheel2_beadd_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wheel2_beadd_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wheel2_beadd_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="wheel2_beade_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wheel2_beade_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wheel2_beade_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="wheel3_beada_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wheel3_beada_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wheel3_beada_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="wheel3_beadb_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wheel3_beadb_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wheel3_beadb_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="wheel3_beadc_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wheel3_beadc_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wheel3_beadc_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="wheel3_beadd_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wheel3_beadd_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wheel3_beadd_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="wheel3_beade_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wheel3_beade_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wheel3_beade_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+</robot>

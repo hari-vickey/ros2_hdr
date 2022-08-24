@@ -1,0 +1,305 @@
+<?xml version="1.0" ?>
+<robot name="duke_bot" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<xacro:property name="red_color" value="Gazebo/Red" />
+<xacro:property name="body_color" value="Gazebo/Blue" />
+<xacro:property name="green_color" value="Gazebo/Green" />
+<xacro:property name="black_color" value="Gazebo/Black" />
+<xacro:property name="silver_color" value="Gazebo/Silver" />
+<xacro:property name="orange_color" value="Gazebo/Orange" />
+<xacro:property name="yellow_color" value="Gazebo/Yellow" />
+
+<gazebo>
+  <plugin name="control" filename="libgazebo_ros_control.so"/>
+</gazebo>
+
+<ros2_control name="GazeboSystem" type="system">
+  <hardware>
+    <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+  </hardware>
+  <joint name="wheel1_joint">
+    <command_interface name="velocity">
+      <param name="min">-100</param>
+      <param name="max">100</param>
+    </command_interface>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+    <state_interface name="effort"/>
+  </joint>
+
+  <joint name="wheel2_joint">
+    <command_interface name="velocity">
+      <param name="min">-100</param>
+      <param name="max">100</param>
+    </command_interface>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+    <state_interface name="effort"/>
+  </joint>
+
+  <joint name="wheel3_joint">
+    <command_interface name="velocity">
+      <param name="min">-100</param>
+      <param name="max">100</param>
+    </command_interface>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+    <state_interface name="effort"/>
+  </joint>
+</ros2_control>
+
+<gazebo>
+  <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+    <parameters>$(find duke_bot_description)/config/controller.yaml</parameters>
+  </plugin>
+</gazebo>
+
+<gazebo reference="lidar_1">
+    <sensor name="rplidar_a3" type="ray">
+        <always_on>true</always_on>
+        <visualize>false</visualize>
+        <pose>0 0 0 0 0 0</pose>
+        <update_rate>100</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>667</samples>
+              <resolution>0.54</resolution>
+              <min_angle>0.000000</min_angle>
+              <max_angle>6.280000</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.120000</min>
+            <max>20</max>
+            <resolution>0.54</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </ray>
+        <plugin name="bytes_laserscan" filename="libgazebo_ros_ray_sensor.so">
+          <ros>
+              <namespace>lidar</namespace>
+            <remapping>~/out:=scan</remapping>
+          </ros>
+          <output_type>sensor_msgs/LaserScan</output_type>
+          <frame_name>head</frame_name>
+        </plugin>
+    </sensor>
+</gazebo>
+
+<gazebo reference="base_link">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+  <gravity>true</gravity>
+</gazebo>
+
+<gazebo reference="top_surface_holder_2_1">
+  <material>${green_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="top_surface_holder_1_1">
+  <material>${green_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="top_surface_holder_3_1">
+  <material>${green_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="top_surface_1">
+  <material>${orange_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="lidar_1">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="motor_holder_1_1">
+  <material>${orange_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="motor_holder_2_1">
+  <material>${orange_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="motor_holder_3_1">
+  <material>${orange_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="n20_motor_1_1">
+  <material>${silver_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="n20_motor_2_1">
+  <material>${silver_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="n20_motor_3_1">
+  <material>${silver_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="omni_wheel_rim_1_1">
+  <material>${red_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="omni_wheel_rim_2_1">
+  <material>${red_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="omni_wheel_rim_3_1">
+  <material>${red_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="wheel1_beadsa_1">
+  <material>${yellow_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="wheel1_beadsb_1">
+  <material>${yellow_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="wheel1_beadsc_1">
+  <material>${yellow_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="wheel1_beadsd_1">
+  <material>${yellow_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="wheel1_beadse_1">
+  <material>${yellow_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="wheel2_beadsa_1">
+  <material>${yellow_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="wheel2_beadsb_1">
+  <material>${yellow_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="wheel2_beadsc_1">
+  <material>${yellow_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="wheel2_beadsd_1">
+  <material>${yellow_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="wheel2_beadse_1">
+  <material>${yellow_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="wheel3_beadsa_1">
+  <material>${yellow_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="wheel3_beadsb_1">
+  <material>${yellow_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="wheel3_beadsc_1">
+  <material>${yellow_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="wheel3_beadsd_1">
+  <material>${yellow_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+<gazebo reference="wheel3_beadse_1">
+  <material>${yellow_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>true</self_collide>
+</gazebo>
+
+</robot>
