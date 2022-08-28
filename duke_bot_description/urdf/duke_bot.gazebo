@@ -4,7 +4,6 @@
 <xacro:property name="red_color" value="Gazebo/Red" />
 <xacro:property name="body_color" value="Gazebo/Blue" />
 <xacro:property name="green_color" value="Gazebo/Green" />
-<xacro:property name="black_color" value="Gazebo/Black" />
 <xacro:property name="silver_color" value="Gazebo/Silver" />
 <xacro:property name="orange_color" value="Gazebo/Orange" />
 <xacro:property name="yellow_color" value="Gazebo/Yellow" />
@@ -91,6 +90,35 @@
     </sensor>
 </gazebo>
 
+<gazebo reference="fake_camera_1">
+  <sensor type="camera" name="ov_camera">
+    <update_rate>60</update_rate>
+    <visualize>false</visualize>
+    <camera name="head">
+      <horizontal_fov>1.3962634</horizontal_fov>
+      <image>
+        <width>640</width>
+        <height>480</height>
+        <format>R8G8B8</format>
+      </image>
+      <clip>
+        <near>0.02</near>
+        <far>100</far>
+      </clip>
+      <noise>
+        <type>gaussian</type>
+        <mean>0.0</mean>
+        <stddev>0.007</stddev>
+      </noise>
+    </camera>
+    <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+      <ros>
+        <remapping>image_raw:=image</remapping>
+      </ros>
+    </plugin>
+  </sensor>
+</gazebo>
+
 <gazebo reference="base_link">
   <material>${body_color}</material>
   <mu1>0.2</mu1>
@@ -100,21 +128,21 @@
 </gazebo>
 
 <gazebo reference="top_surface_holder_2_1">
-  <material>${green_color}</material>
+  <material>${yellow_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
 </gazebo>
 
 <gazebo reference="top_surface_holder_1_1">
-  <material>${green_color}</material>
+  <material>${yellow_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
 </gazebo>
 
 <gazebo reference="top_surface_holder_3_1">
-  <material>${green_color}</material>
+  <material>${yellow_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
@@ -176,127 +204,29 @@
   <self_collide>true</self_collide>
 </gazebo>
 
-<gazebo reference="omni_wheel_rim_1_1">
+<gazebo reference="omni_wheel_1_1">
   <material>${red_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
 </gazebo>
 
-<gazebo reference="omni_wheel_rim_2_1">
+<gazebo reference="omni_wheel_2_1">
   <material>${red_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
 </gazebo>
 
-<gazebo reference="omni_wheel_rim_3_1">
+<gazebo reference="omni_wheel_3_1">
   <material>${red_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
 </gazebo>
 
-<gazebo reference="wheel1_beadsa_1">
-  <material>${yellow_color}</material>
-  <mu1>0.2</mu1>
-  <mu2>0.2</mu2>
-  <self_collide>true</self_collide>
-</gazebo>
-
-<gazebo reference="wheel1_beadsb_1">
-  <material>${yellow_color}</material>
-  <mu1>0.2</mu1>
-  <mu2>0.2</mu2>
-  <self_collide>true</self_collide>
-</gazebo>
-
-<gazebo reference="wheel1_beadsc_1">
-  <material>${yellow_color}</material>
-  <mu1>0.2</mu1>
-  <mu2>0.2</mu2>
-  <self_collide>true</self_collide>
-</gazebo>
-
-<gazebo reference="wheel1_beadsd_1">
-  <material>${yellow_color}</material>
-  <mu1>0.2</mu1>
-  <mu2>0.2</mu2>
-  <self_collide>true</self_collide>
-</gazebo>
-
-<gazebo reference="wheel1_beadse_1">
-  <material>${yellow_color}</material>
-  <mu1>0.2</mu1>
-  <mu2>0.2</mu2>
-  <self_collide>true</self_collide>
-</gazebo>
-
-<gazebo reference="wheel2_beadsa_1">
-  <material>${yellow_color}</material>
-  <mu1>0.2</mu1>
-  <mu2>0.2</mu2>
-  <self_collide>true</self_collide>
-</gazebo>
-
-<gazebo reference="wheel2_beadsb_1">
-  <material>${yellow_color}</material>
-  <mu1>0.2</mu1>
-  <mu2>0.2</mu2>
-  <self_collide>true</self_collide>
-</gazebo>
-
-<gazebo reference="wheel2_beadsc_1">
-  <material>${yellow_color}</material>
-  <mu1>0.2</mu1>
-  <mu2>0.2</mu2>
-  <self_collide>true</self_collide>
-</gazebo>
-
-<gazebo reference="wheel2_beadsd_1">
-  <material>${yellow_color}</material>
-  <mu1>0.2</mu1>
-  <mu2>0.2</mu2>
-  <self_collide>true</self_collide>
-</gazebo>
-
-<gazebo reference="wheel2_beadse_1">
-  <material>${yellow_color}</material>
-  <mu1>0.2</mu1>
-  <mu2>0.2</mu2>
-  <self_collide>true</self_collide>
-</gazebo>
-
-<gazebo reference="wheel3_beadsa_1">
-  <material>${yellow_color}</material>
-  <mu1>0.2</mu1>
-  <mu2>0.2</mu2>
-  <self_collide>true</self_collide>
-</gazebo>
-
-<gazebo reference="wheel3_beadsb_1">
-  <material>${yellow_color}</material>
-  <mu1>0.2</mu1>
-  <mu2>0.2</mu2>
-  <self_collide>true</self_collide>
-</gazebo>
-
-<gazebo reference="wheel3_beadsc_1">
-  <material>${yellow_color}</material>
-  <mu1>0.2</mu1>
-  <mu2>0.2</mu2>
-  <self_collide>true</self_collide>
-</gazebo>
-
-<gazebo reference="wheel3_beadsd_1">
-  <material>${yellow_color}</material>
-  <mu1>0.2</mu1>
-  <mu2>0.2</mu2>
-  <self_collide>true</self_collide>
-</gazebo>
-
-<gazebo reference="wheel3_beadse_1">
-  <material>${yellow_color}</material>
+<gazebo reference="ov_camera_1">
+  <material>${green_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
