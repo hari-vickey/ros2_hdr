@@ -1,4 +1,4 @@
-# BD1 Bot
+# Duke Bot
 
 <p align = "justify">
 The Duke Bot is modeled for navigation tasks from scratch using Fusion360. The CAD Model of our design is shown in the image. </p>
