@@ -1,3 +1,4 @@
+
 # ROS Gazebo Controller for Duke Bot
 controller_manager:
     ros__parameters:
@@ -22,7 +23,6 @@ wheel1_drive_controller:
         command_interfaces:
             - velocity
         state_interfaces:
-            - position
             - velocity
 
 wheel2_drive_controller:
@@ -32,7 +32,6 @@ wheel2_drive_controller:
         command_interfaces:
             - velocity
         state_interfaces:
-            - position
             - velocity
 
 wheel3_drive_controller:
@@ -42,5 +41,4 @@ wheel3_drive_controller:
         command_interfaces:
             - velocity
         state_interfaces:
-            - position
             - velocity

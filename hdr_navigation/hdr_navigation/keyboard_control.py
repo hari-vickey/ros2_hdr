@@ -29,7 +29,7 @@ class KeyboardController(Node):
         self.pubwheel3 = self.create_publisher(Float64MultiArray, 
                                                '/wheel3_drive_controller/commands',
                                                1)
-        self.speed = 5.0
+        self.speed = 10.0
         print("Holonomic Drive Robot using Omni Wheel")
         print("Keyboard Controller\n ^ - Move Forward \n v - Move Backward \
                > - Move Right \n < - Move Left \n rctrl - rotate \n del - stop")
@@ -43,9 +43,9 @@ class KeyboardController(Node):
         wheel2_value = Float64MultiArray()
         wheel3_value = Float64MultiArray()
         if key == Key.shift_r:
-            self.speed += 2.5
+            self.speed += 5
         if key == Key.alt_r:
-            self.speed -= 2.5
+            self.speed -= 5
         if key == Key.up:
             wheel1_value.data = [-self.speed]
             wheel2_value.data = [self.speed]
