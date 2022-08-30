@@ -1,55 +1,60 @@
-
 import os
 import xacro
 from launch_ros.actions import Node
 from launch import LaunchDescription
+from launch.conditions import IfCondition
 from launch.event_handlers import OnProcessExit
-from ament_index_python.packages import get_package_share_directory
+from launch.actions import DeclareLaunchArgument
 from launch.actions import ExecuteProcess, IncludeLaunchDescription, RegisterEventHandler
+from launch.substitutions import LaunchConfiguration
+from ament_index_python.packages import get_package_share_directory
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
+    pkg_bot_description = get_package_share_directory('duke_bot_description')
+    pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
+    pkg_sim_world = get_package_share_directory('nav_world')
+
+    xacro_file = os.path.join(pkg_bot_description, 'urdf', 'duke_bot.xacro')
+    robot_description_config = xacro.process_file(xacro_file)
+    robot_urdf = robot_description_config.toxml()
+
+    robot_state_publisher_node = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        name='robot_state_publisher',
+        parameters=[
+            {'robot_description': robot_urdf}
+        ]
+    )
+
+    joint_state_publisher_node = Node(
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
+        name='joint_state_publisher'
+    )
+
     # Gazebo launch
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py'),
+            os.path.join(pkg_gazebo_ros, 'launch', 'gazebo.launch.py'),
         ),
         launch_arguments={
             'pause': 'true'
         }.items()
     )
 
-    duke_bot_description_path = os.path.join(
-        get_package_share_directory('duke_bot_description'))
-
-    xacro_file = os.path.join(duke_bot_description_path,
-                              'urdf',
-                              'duke_bot.xacro')
-    doc = xacro.parse(open(xacro_file))
-    xacro.process_doc(doc)
-    params = {'robot_description': doc.toxml()}
-    rviz_config_file = os.path.join(duke_bot_description_path, 'config', 'display.rviz')
-
-    node_robot_state_publisher = Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        output='screen',
-        parameters=[params]
-    )
-
-    rviz_node = Node(
-        package='rviz2',
-        executable='rviz2',
-        name='rviz2',
-        arguments=['-d', rviz_config_file],
+    # Spawn Urdf
+    urdf_spawn_node = Node(
+        package='gazebo_ros',
+        executable='spawn_entity.py',
+        arguments=[
+            '-entity', 'duke_bot',
+            '-topic', 'robot_description',
+            '-z', '0.077'
+        ],
         output='screen'
     )
-
-    spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
-                        arguments=['-topic', 'robot_description',
-                                   '-entity', 'duke_bot',
-                                   '-z', '0.027',],
-                        output='screen')
 
     load_joint_state_controller = ExecuteProcess(
         cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
@@ -73,12 +78,13 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        spawn_entity,
-        gazebo,
-        node_robot_state_publisher,
+        DeclareLaunchArgument('world',
+          default_value=[os.path.join(pkg_sim_world, 'worlds', 'smalltown.world'), ''],
+          description='SDF world file'),
+        robot_state_publisher_node,
         RegisterEventHandler(
             event_handler=OnProcessExit(
-                target_action=spawn_entity,
+                target_action=urdf_spawn_node,
                 on_exit=[load_joint_state_controller],
             )
         ),
@@ -100,5 +106,6 @@ def generate_launch_description():
                 on_exit=[load_joint_trajectory_controller_3],
             )
         ),
-        # rviz_node
+        gazebo,
+        urdf_spawn_node,
     ])

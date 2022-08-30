@@ -45,9 +45,8 @@ Do not forget to source ROS2 and Gazebo setup.bash in the ~/.bashrc file.
 
 * duke_bot_description – ROS2 python package containing all the files related to holonomic drive robot for simulation
 * hdr_navigation – ROS2 python package to explore the navigation stack using the duke bot in gazebo simulation
-* sim_world – ROS2 CPP package containing all the files related to adding simulation world in the gazebo
-* designFiles – BD1 bot design in Fusion360, SolidWorks and SketchUp Format are attached.
-* documents - Files related to Mathematical Modelling and documentation are added.
+* nav_world – ROS2 CPP package containing all the files related to add simulation world in the gazebo
+* designFiles – duke bot design in Fusion360, SolidWorks and SketchUp Format are attached.
 
 ## Demonstration
 
