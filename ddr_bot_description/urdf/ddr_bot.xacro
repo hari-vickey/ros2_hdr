@@ -1,0 +1,285 @@
+<?xml version="1.0" ?>
+<robot name="ddr_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find ddr_bot_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find ddr_bot_description)/urdf/ddr_bot.trans" />
+<xacro:include filename="$(find ddr_bot_description)/urdf/ddr_bot.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="-0.0014308875090929254 2.4480428791933076e-07 0.016273011132728474" rpy="0 0 0"/>
+    <mass value="0.08531817335201346"/>
+    <inertia ixx="5.7e-05" iyy="0.00018" izz="0.000193" ixy="-0.0" iyz="0.0" ixz="-5e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="seat_1">
+  <inertial>
+    <origin xyz="-0.0040427285685066955 0.011280858541236163 0.01684430079942264" rpy="0 0 0"/>
+    <mass value="0.019495073850443974"/>
+    <inertia ixx="5e-06" iyy="7e-06" izz="6e-06" ixy="-0.0" iyz="-0.0" ixz="-2e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.039375 0.011464 0.001" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/seat_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.039375 0.011464 0.001" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/seat_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_back_wheel_rim_1">
+  <inertial>
+    <origin xyz="-9.210695581240991e-08 -0.007360578683035066 -3.6499785336513435e-08" rpy="0 0 0"/>
+    <mass value="0.008437339304302348"/>
+    <inertia ixx="1e-06" iyy="2e-06" izz="1e-06" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.071718 0.040475 -0.0125" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/left_back_wheel_rim_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.071718 0.040475 -0.0125" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/left_back_wheel_rim_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_back_wheel_rim_1">
+  <inertial>
+    <origin xyz="9.21069558262877e-08 0.007360578683035066 -3.6499785336513435e-08" rpy="0 0 0"/>
+    <mass value="0.008437339304302348"/>
+    <inertia ixx="1e-06" iyy="2e-06" izz="1e-06" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.071718 -0.040475 -0.0125" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/right_back_wheel_rim_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.071718 -0.040475 -0.0125" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/right_back_wheel_rim_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_front_wheel_rim_1">
+  <inertial>
+    <origin xyz="-9.210695581240991e-08 -0.007360578683035066 -3.6499785336513435e-08" rpy="0 0 0"/>
+    <mass value="0.008437339304302348"/>
+    <inertia ixx="1e-06" iyy="2e-06" izz="1e-06" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.068282 0.037475 -0.0125" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/left_front_wheel_rim_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.068282 0.037475 -0.0125" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/left_front_wheel_rim_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_front_wheel_rim_1">
+  <inertial>
+    <origin xyz="9.21069558262877e-08 0.007360578683035066 -3.6499785336513435e-08" rpy="0 0 0"/>
+    <mass value="0.008437339304302348"/>
+    <inertia ixx="1e-06" iyy="2e-06" izz="1e-06" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.068282 -0.037475 -0.0125" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/right_front_wheel_rim_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.068282 -0.037475 -0.0125" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/right_front_wheel_rim_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_back_wheel_tyre_1">
+  <inertial>
+    <origin xyz="-7.916602472179957e-08 0.008000005616797805 1.1114340360898756e-07" rpy="0 0 0"/>
+    <mass value="0.005759648563169874"/>
+    <inertia ixx="1e-06" iyy="3e-06" izz="1e-06" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.071718 0.054475 -0.0125" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/left_back_wheel_tyre_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.071718 0.054475 -0.0125" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/left_back_wheel_tyre_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_front_wheel_tyre_1">
+  <inertial>
+    <origin xyz="-7.916602472179957e-08 0.008000005616797798 1.1114340360898756e-07" rpy="0 0 0"/>
+    <mass value="0.005759648563169874"/>
+    <inertia ixx="1e-06" iyy="3e-06" izz="1e-06" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.068282 0.051475 -0.0125" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/left_front_wheel_tyre_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.068282 0.051475 -0.0125" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/left_front_wheel_tyre_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_back_wheel_tyre_1">
+  <inertial>
+    <origin xyz="7.916602473567735e-08 -0.008000005616797805 1.1114340360898756e-07" rpy="0 0 0"/>
+    <mass value="0.005759648563169874"/>
+    <inertia ixx="1e-06" iyy="3e-06" izz="1e-06" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.071718 -0.054475 -0.0125" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/right_back_wheel_tyre_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.071718 -0.054475 -0.0125" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/right_back_wheel_tyre_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_front_wheel_tyre_1">
+  <inertial>
+    <origin xyz="7.916602473567735e-08 -0.008000005616797798 1.1114340360898756e-07" rpy="0 0 0"/>
+    <mass value="0.005759648563169874"/>
+    <inertia ixx="1e-06" iyy="3e-06" izz="1e-06" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.068282 -0.051475 -0.0125" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/right_front_wheel_tyre_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.068282 -0.051475 -0.0125" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find ddr_bot_description)/meshes/right_front_wheel_tyre_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar_1">
+  <origin xyz="-0.0014308875090929254 2.4480428791933076e-07 0.06" rpy="0 0 0"/>
+</link>
+
+<joint name="lidar_fix" type="fixed">
+  <origin xyz="-0.0014308875090929254 2.4480428791933076e-07 0.06" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar_1"/>
+</joint>
+
+<joint name="seat_fix" type="fixed">
+  <origin xyz="0.039375 -0.011464 -0.001" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="seat_1"/>
+</joint>
+
+<joint name="left_back_wheel_joint" type="continuous">
+  <origin xyz="0.071718 -0.040475 0.0125" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_back_wheel_rim_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="right_back_wheel_joint" type="continuous">
+  <origin xyz="0.071718 0.040475 0.0125" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_back_wheel_rim_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="left_front_wheel_joint" type="continuous">
+  <origin xyz="-0.068282 -0.037475 0.0125" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_front_wheel_rim_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="right_front_wheel_joint" type="continuous">
+  <origin xyz="-0.068282 0.037475 0.0125" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_front_wheel_rim_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="left_back_tyre_fix" type="fixed">
+  <origin xyz="0.0 -0.014 0.0" rpy="0 0 0"/>
+  <parent link="left_back_wheel_rim_1"/>
+  <child link="left_back_wheel_tyre_1"/>
+</joint>
+
+<joint name="left_front_tyre_fix" type="fixed">
+  <origin xyz="0.0 -0.014 0.0" rpy="0 0 0"/>
+  <parent link="left_front_wheel_rim_1"/>
+  <child link="left_front_wheel_tyre_1"/>
+</joint>
+
+<joint name="right_back_tyre_fix" type="fixed">
+  <origin xyz="0.0 0.014 0.0" rpy="0 0 0"/>
+  <parent link="right_back_wheel_rim_1"/>
+  <child link="right_back_wheel_tyre_1"/>
+</joint>
+
+<joint name="right_front_tyre_fix" type="fixed">
+  <origin xyz="0.0 0.014 0.0" rpy="0 0 0"/>
+  <parent link="right_front_wheel_rim_1"/>
+  <child link="right_front_wheel_tyre_1"/>
+</joint>
+
+</robot>

@@ -9,8 +9,12 @@ Install Dependencies to ensure all packages are installed.
 
 Launch the arena to test the code using the below-mentioned command.
 
-        ros2 launch hdr_navigation cafe_world.launch.py
-        ros2 launch hdr_navigation smalltown_world.launch.py
+        ros2 launch hdr_navigation ddr_bot_world.launch.py # defaults cafe.world
+        ros2 launch hdr_navigation duke_bot_world.launch.py world:=smalltown.world
+
+Run the keyboard controller to drive the ddr bot.
+
+        ros2 run teleop_twist_keyboard teleop_twist_keyboard
 
 Run the keyboard controller to drive the duke bot.
 
