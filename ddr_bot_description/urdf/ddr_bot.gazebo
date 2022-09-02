@@ -22,22 +22,20 @@
     <right_joint>right_back_wheel_joint</right_joint>
 
     <!-- Wheel acceleration, in rad/s^2, defaults to 0.0 rad/s^2 -->
-    <max_wheel_acceleration>1.0</max_wheel_acceleration>
+    <max_wheel_acceleration>4.0</max_wheel_acceleration>
 
     <!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
-    <max_wheel_torque>5</max_wheel_torque>
+    <max_wheel_torque>20</max_wheel_torque>
 
     <!-- Odometry frame, defaults to `odom` -->
     <odometry_frame>odom</odometry_frame>
+    <odometry_topic>odom</odometry_topic>
 
     <!-- Robot frame to calculate odometry from, defaults to `base_footprint` -->
     <robot_base_frame>base_link</robot_base_frame>
 
     <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
     <odometry_source>1</odometry_source>
-
-    <!-- Set to true to publish transforms for the wheel links, defaults to false -->
-    <publish_wheel_tf>false</publish_wheel_tf>
 
     <!-- Robot Wheel Seperation Distance in m -->
     <!-- <wheel_separation>0.1495</wheel_separation> -->
@@ -47,9 +45,18 @@
 
     <!-- Set to true to publish transforms for the odometry, defaults to true -->
     <publish_odom>true</publish_odom>
+    <!-- When true, publish coordinate transform from odom to base_footprint -->
+    <publish_odom_tf>false</publish_odom_tf>
+    <!-- When true, publish coordinate transform from base_link to the wheels -->
+    <publish_wheel_tf>false</publish_wheel_tf>
 
     <!-- Set to true to swap right and left wheels, defaults to true -->
     <!-- <legacy_mode>false</legacy_mode> -->
+
+    <!-- Change the ROS topic we will publish the odometry data to -->
+    <ros>
+      <remapping>odom:=/odometry</remapping>
+    </ros>
   </plugin>
 </gazebo>
 
@@ -104,30 +111,29 @@
                 <namespace>imu</namespace>
                 <remapping>~/out:=data</remapping>
             </ros>
-            <initial_orientation_as_reference>true</initial_orientation_as_reference>
+            <initial_orientation_as_reference>false</initial_orientation_as_reference>
         </plugin>
     </sensor>
 </gazebo>
 
-<gazebo reference="lidar_1">
-    <sensor name="rplidar_a3" type="ray">
+<gazebo reference="lidar_link">
+    <sensor name="lidar" type="ray">
         <always_on>true</always_on>
-        <visualize>false</visualize>
-        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
         <update_rate>100</update_rate>
         <ray>
           <scan>
             <horizontal>
-              <samples>667</samples>
-              <resolution>0.54</resolution>
+              <samples>360</samples>
+              <resolution>1.00</resolution>
               <min_angle>0.000000</min_angle>
               <max_angle>6.280000</max_angle>
             </horizontal>
           </scan>
           <range>
-            <min>0.120000</min>
-            <max>20</max>
-            <resolution>0.54</resolution>
+            <min>0.02000</min>
+            <max>2.5</max>
+            <resolution>0.015</resolution>
           </range>
           <noise>
             <type>gaussian</type>
@@ -135,13 +141,12 @@
             <stddev>0.01</stddev>
           </noise>
         </ray>
-        <plugin name="bytes_laserscan" filename="libgazebo_ros_ray_sensor.so">
+        <plugin name="scan" filename="libgazebo_ros_ray_sensor.so">
           <ros>
-              <namespace>lidar</namespace>
             <remapping>~/out:=scan</remapping>
           </ros>
           <output_type>sensor_msgs/LaserScan</output_type>
-          <frame_name>head</frame_name>
+          <frame_name>lidar_link</frame_name>
         </plugin>
     </sensor>
 </gazebo>

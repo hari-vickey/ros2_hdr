@@ -214,14 +214,26 @@
   </collision>
 </link>
 
-<link name="lidar_1">
-  <origin xyz="-0.0014308875090929254 2.4480428791933076e-07 0.06" rpy="0 0 0"/>
+<link name="lidar_link">
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+       <cylinder radius="0.0005" length="0.005"/>
+    </geometry>
+  </collision>
+
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+       <cylinder radius="0.005" length="0.005"/>
+    </geometry>
+  </visual>
 </link>
 
-<joint name="lidar_fix" type="fixed">
-  <origin xyz="-0.0014308875090929254 2.4480428791933076e-07 0.06" rpy="0 0 0"/>
+<joint name="lidar_joint" type="fixed">
+  <origin xyz="0.022 0 0.059" rpy="0 0 0"/>
   <parent link="base_link"/>
-  <child link="lidar_1"/>
+  <child link="lidar_link"/>
 </joint>
 
 <joint name="seat_fix" type="fixed">
