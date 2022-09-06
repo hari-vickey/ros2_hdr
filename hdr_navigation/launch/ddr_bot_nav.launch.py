@@ -22,7 +22,7 @@ def generate_launch_description():
 
     # Simulation World
     pkg_sim_world = FindPackageShare(package='nav_world').find('nav_world')
-    world_file_name = 'cafe.world'
+    world_file_name = 'smalltown.world'
     world_path = os.path.join(pkg_sim_world, 'worlds', world_file_name)
 
     # HDR Navigation Map and Configuration
@@ -146,17 +146,17 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(nav2_launch_dir, 'bringup_launch.py')),
         condition=IfCondition(use_nav_stack),
-        launch_arguments = {'slam': use_slam,
+        launch_arguments = {'slam': 'True',
                             'map': use_map,
                             'use_sim_time': use_sim_time,
                             'params_file': use_params,
-                            'slam_params_file': use_params,
-                            'default_bt_xml_filename': behavior_tree_file}.items())
+                            'slam_params_file': use_params}.items())
 
     # Start ROS 2 Slam Node
     # This Node publishes map -> odom transformation
     # Set Parameters appropriately
     start_nav2_slam_node = Node(
+        condition=IfCondition(use_slam),
         parameters=[use_params, {'use_sim_time': use_sim_time}],
         package = 'slam_toolbox',
         executable = 'async_slam_toolbox_node',

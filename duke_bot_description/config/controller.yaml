@@ -7,38 +7,17 @@ controller_manager:
         joint_state_broadcaster:
             type: joint_state_broadcaster/JointStateBroadcaster
 
-        wheel1_drive_controller:
+        omni_wheel_controller:
             type: velocity_controllers/JointGroupVelocityController
 
-        wheel2_drive_controller:
-            type: velocity_controllers/JointGroupVelocityController
-
-        wheel3_drive_controller:
-            type: velocity_controllers/JointGroupVelocityController
-
-wheel1_drive_controller:
+omni_wheel_controller:
     ros__parameters:
-        joints: 
+        joints:
             - wheel1_joint
-        command_interfaces:
-            - velocity
-        state_interfaces:
-            - velocity
-
-wheel2_drive_controller:
-    ros__parameters:
-        joints: 
             - wheel2_joint
-        command_interfaces:
-            - velocity
-        state_interfaces:
-            - velocity
-
-wheel3_drive_controller:
-    ros__parameters:
-        joints: 
             - wheel3_joint
         command_interfaces:
+            - position
             - velocity
         state_interfaces:
             - velocity

@@ -57,18 +57,8 @@ def generate_launch_description():
         output='screen'
     )
 
-    load_joint_trajectory_controller_1 = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'wheel1_drive_controller'],
-        output='screen'
-    )
-
-    load_joint_trajectory_controller_2 = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'wheel2_drive_controller'],
-        output='screen'
-    )
-
-    load_joint_trajectory_controller_3 = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'wheel3_drive_controller'],
+    load_joint_trajectory_controller = ExecuteProcess(
+        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'omni_wheel_controller'],
         output='screen'
     )
 
@@ -85,19 +75,7 @@ def generate_launch_description():
         RegisterEventHandler(
             event_handler=OnProcessExit(
                 target_action=load_joint_state_controller,
-                on_exit=[load_joint_trajectory_controller_1],
-            )
-        ),
-        RegisterEventHandler(
-            event_handler=OnProcessExit(
-                target_action=load_joint_trajectory_controller_1,
-                on_exit=[load_joint_trajectory_controller_2],
-            )
-        ),
-        RegisterEventHandler(
-            event_handler=OnProcessExit(
-                target_action=load_joint_trajectory_controller_2,
-                on_exit=[load_joint_trajectory_controller_3],
+                on_exit=[load_joint_trajectory_controller],
             )
         ),
         # rviz_node

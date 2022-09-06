@@ -20,14 +20,8 @@ class KeyboardController(Node):
         """
         # Initializing Node
         super().__init__('hdr_keyboard_controller')
-        self.pubwheel1 = self.create_publisher(Float64MultiArray, 
-                                               '/wheel1_drive_controller/commands',
-                                               1)
-        self.pubwheel2 = self.create_publisher(Float64MultiArray, 
-                                               '/wheel2_drive_controller/commands',
-                                               1)
-        self.pubwheel3 = self.create_publisher(Float64MultiArray, 
-                                               '/wheel3_drive_controller/commands',
+        self.pub_velocity = self.create_publisher(Float64MultiArray,
+                                               '/omni_wheel_controller/commands',
                                                1)
         self.speed = 10.0
         print("Holonomic Drive Robot using Omni Wheel")
@@ -39,40 +33,24 @@ class KeyboardController(Node):
 
     # Show Function
     def show(self, key):
-        wheel1_value = Float64MultiArray()
-        wheel2_value = Float64MultiArray()
-        wheel3_value = Float64MultiArray()
+        value = Float64MultiArray()
         if key == Key.shift_r:
             self.speed += 5
         if key == Key.alt_r:
             self.speed -= 5
         if key == Key.up:
-            wheel1_value.data = [-self.speed]
-            wheel2_value.data = [self.speed]
-            wheel3_value.data = [0.0]
+            value.data = [-self.speed, self.speed, 0.0]
         elif key == Key.right:
-            wheel1_value.data = [0.0]
-            wheel2_value.data = [self.speed]
-            wheel3_value.data = [-self.speed]
+            value.data = [0.0, self.speed, -self.speed]
         elif key == Key.left:
-            wheel1_value.data = [0.0]
-            wheel2_value.data = [-self.speed]
-            wheel3_value.data = [self.speed]
+            value.data = [0.0, -self.speed, self.speed]
         elif key == Key.down:
-            wheel1_value.data = [self.speed]
-            wheel2_value.data = [-self.speed]
-            wheel3_value.data = [0.0]
+            value.data = [self.speed, -self.speed, 0.0]
         elif key == Key.ctrl_r:
-            wheel1_value.data = [self.speed]
-            wheel2_value.data = [self.speed]
-            wheel3_value.data = [self.speed]
+            value.data = [self.speed, self.speed, self.speed]
         elif key == Key.delete:
-            wheel1_value.data = [0.0]
-            wheel2_value.data = [0.0]
-            wheel3_value.data = [0.0]
-        self.pubwheel1.publish(wheel1_value)
-        self.pubwheel2.publish(wheel2_value)
-        self.pubwheel3.publish(wheel3_value)
+            value.data = [0.0, 0.0, 0.0]
+        self.pub_velocity.publish(value)
 
 def main():
     rclpy.init()

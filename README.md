@@ -28,7 +28,10 @@ Apart from the above-mentioned installation, you might need to install some ROS2
     sudo apt-get install ros2-controllers -y
     sudo apt-get install ros-humble-turtle-tf2-py ros-humble-tf2-tools ros-humble-tf-transformations
     sudo apt install ros-humble-navigation2
-    sudo apt install ros-humble-nav2-bringup
+    sudo apt install ros-humble-nav2*
+    sudo apt install ros-humble-robot-localization
+    sudo apt install ros-humble-slam-toolbox
+    sudo apt install ros-humble-rqt-robot-steering
     sudo pip3 install transforms3d
 
 Do not forget to source ROS2 and Gazebo setup.bash in the ~/.bashrc file.
