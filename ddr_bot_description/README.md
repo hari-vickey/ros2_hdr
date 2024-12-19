@@ -1,10 +1,10 @@
-# Duke Bot
+# DDR Bot
 
 <p align = "justify">
 The DDR Bot is modeled for navigation tasks from scratch using Fusion360. The CAD Model of our design is shown in the image. </p>
 
 <div style="text" align="center">
-    <img src="https://github.com/hari-vickey/ROS2-HDR/blob/main/images/ddr_bot_fusion.png" />
+    <img src="./../assets/ddr_bot_fusion.png" />
 </div>
 
 Note: The steps mentioned below are only for users to develop their custom designs and test them on the Gazebo simulator.
@@ -23,11 +23,11 @@ After exporting the design, there are some steps to add color and gazebo plugins
 Get to know some of the plugins available on ROS Gazebo package using the [link](https://medium.com/@bytesrobotics/a-review-of-the-ros2-urdf-gazebo-sensor-91e947c633d7)
 1. Copy-Paste the exported ROS2 package into the ROS2 workspace.
 2. Open urdf/ddr_bot.gazebo. To add or change color to the component. Edit this file as shown in the image.
-    ![](https://github.com/hari-vickey/ROS2-HDR/blob/main/images/change_color.png)
+    ![](./../assets/change_color.png)
 3. To add gazebo plugins visit this [link](https://github.com/ros-simulation/gazebo_ros_pkgs/wiki). An example to add a camera gazebo plugin is shown in the image.
-   ![](https://github.com/hari-vickey/ROS2-HDR/blob/main/images/add_plugin.png)
+   ![](./../assets/add_plugin.png)
 4. Add controller for the wheels to drive it on Gazebo. Refer to the image to add a differential drive controller.
-    ![](https://github.com/hari-vickey/ROS2-HDR/blob/main/images/add_diff_controller.png)
+    ![](./../assets/add_diff_controller.png)
 
 5. Once all the changes are made, build the package and source it.
 
@@ -51,5 +51,5 @@ Verify the added plugins.
     rqt
 
 <div style="text" align="center">
-    <img src="https://github.com/hari-vickey/ROS2-HDR/blob/main/images/test_ddr_description_pkg.png" />
+    <img src="./../assets/test_ddr_description_pkg.png" />
 </div>

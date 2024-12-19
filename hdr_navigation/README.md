@@ -1,28 +1,30 @@
-# BD1 Self Balancer
+# Holonomic Drive Navigation
+
+## Todos
+
+- [ ] Update Holonomic driver
+- [ ] explore Nav stack using rviz2
 
 <p align = "justify">
 This package contains the code for navigation tasks for the holonomic drive robot.</p>
 
 Install Dependencies to ensure all packages are installed.
 
-        rosdep install --from-paths ./ -i -y --rosdistro humble --ignore-src
+    rosdep install --from-paths ./ -i -y --rosdistro humble --ignore-src
+    pip install pynput
 
 Launch the arena to test the code using the below-mentioned command.
 
-        ros2 launch hdr_navigation ddr_bot_world.launch.py # defaults cafe.world
-        ros2 launch hdr_navigation duke_bot_world.launch.py world:=smalltown.world
+    ros2 launch hdr_navigation ddr_bot_world.launch.py # defaults cafe.world
+    ros2 launch hdr_navigation duke_bot_world.launch.py world:=smalltown.world
 
-Run the keyboard controller to drive the ddr bot.
+Run the keyboard controller to drive the duke bot. For ddr bot, `keyboard_control_ddr`
 
-        ros2 run teleop_twist_keyboard teleop_twist_keyboard
-
-Run the keyboard controller to drive the duke bot.
-
-        ros2 run hdr_navigation keyboard_control
+    ros2 run hdr_navigation keyboard_control_hdr
 
 <div style="text" align="center">
-    <img src="https://github.com/hari-vickey/ROS2-HDR/blob/main/images/test_hdr_world1.png" />
+    <img src="./../assets/test_hdr_world1.png" />
 </div>
 <div style="text" align="center">
-    <img src="https://github.com/hari-vickey/ROS2-HDR/blob/main/images/test_hdr_world2.png" />
+    <img src="./../assets/test_hdr_world2.png" />
 </div>
