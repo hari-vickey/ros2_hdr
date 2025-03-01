@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>hdr_navigation</name>
+  <name>locomotion_control</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="harivikinesh@gmail.com">vickey</maintainer>
-  <license>TODO: License declaration</license>
+  <description>Navigation Controller for DDR and HDR</description>
+  <maintainer email="harivikinesh@gmail.com">Hari Vikinesh</maintainer>
+  <license>MIT</license>
 
   <depend>rclpy</depend>
   <depend>xacro</depend>

@@ -39,9 +39,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(pkg_gazebo_ros, 'launch', 'gazebo.launch.py'),
         ),
-        launch_arguments={
-            'pause': 'true'
-        }.items()
+        launch_arguments={ 'pause': 'false' }.items()
     )
 
     # Spawn Urdf
@@ -56,56 +54,12 @@ def generate_launch_description():
         output='screen'
     )
 
-    load_joint_state_controller = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
-             'joint_state_broadcaster'],
-        output='screen'
-    )
-
-    load_joint_trajectory_controller_1 = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'wheel1_drive_controller'],
-        output='screen'
-    )
-
-    load_joint_trajectory_controller_2 = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'wheel2_drive_controller'],
-        output='screen'
-    )
-
-    load_joint_trajectory_controller_3 = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'wheel3_drive_controller'],
-        output='screen'
-    )
-
     return LaunchDescription([
         DeclareLaunchArgument('world',
           default_value=[os.path.join(pkg_sim_world, 'worlds', 'cafe.world'), ''],
           description='SDF world file'),
         robot_state_publisher_node,
-        RegisterEventHandler(
-            event_handler=OnProcessExit(
-                target_action=urdf_spawn_node,
-                on_exit=[load_joint_state_controller],
-            )
-        ),
-        RegisterEventHandler(
-            event_handler=OnProcessExit(
-                target_action=load_joint_state_controller,
-                on_exit=[load_joint_trajectory_controller_1],
-            )
-        ),
-        RegisterEventHandler(
-            event_handler=OnProcessExit(
-                target_action=load_joint_trajectory_controller_1,
-                on_exit=[load_joint_trajectory_controller_2],
-            )
-        ),
-        RegisterEventHandler(
-            event_handler=OnProcessExit(
-                target_action=load_joint_trajectory_controller_2,
-                on_exit=[load_joint_trajectory_controller_3],
-            )
-        ),
+        joint_state_publisher_node,
         gazebo,
         urdf_spawn_node,
     ])

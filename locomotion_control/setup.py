@@ -2,7 +2,7 @@ import os
 from glob import glob
 from setuptools import setup
 
-package_name = 'hdr_navigation'
+package_name = 'locomotion_control'
 
 setup(
     name=package_name,
@@ -18,15 +18,15 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='vickey',
+    maintainer='Hari Vikinesh',
     maintainer_email='harivikinesh@gmail.com',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    description='Navigation Controller for DDR and HDR',
+    license='MIT',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        'keyboard_control_ddr = hdr_navigation.keyboard_control_ddr:main',
-        'keyboard_control_hdr = hdr_navigation.keyboard_control_hdr:main',
+        'keyboard_control_ddr = locomotion_control.keyboard_control_ddr:main',
+        'keyboard_control_hdr = locomotion_control.keyboard_control_hdr:main',
         ],
     },
 )

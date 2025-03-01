@@ -14,11 +14,11 @@ def generate_launch_description():
     pkg_bot_description = get_package_share_directory('ddr_bot_description')
     pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
     pkg_sim_world = get_package_share_directory('nav_world')
-    pkg_share = get_package_share_directory('hdr_navigation')
+    pkg_share = get_package_share_directory('locomotion_control')
     xacro_file = os.path.join(pkg_bot_description, 'urdf', 'ddr_bot.xacro')
     robot_description_config = xacro.process_file(xacro_file)
     robot_urdf = robot_description_config.toxml()
-    robot_localization_file_path = os.path.join(pkg_share, 'config', 'ekf.yaml') 
+    robot_localization_file_path = os.path.join(pkg_share, 'config', 'ekf.yaml')
     rviz_config_file = os.path.join(pkg_share, 'config', 'ddr_nav_config.rviz')
 
     robot_state_publisher_node = Node(

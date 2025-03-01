@@ -2,7 +2,6 @@
 
 ## Todos
 
-- [ ] Update Holonomic driver
 - [ ] explore Nav stack using rviz2
 
 <p align = "justify">
@@ -15,12 +14,12 @@ Install Dependencies to ensure all packages are installed.
 
 Launch the arena to test the code using the below-mentioned command.
 
-    ros2 launch hdr_navigation ddr_bot_world.launch.py # defaults cafe.world
-    ros2 launch hdr_navigation duke_bot_world.launch.py world:=smalltown.world
+    ros2 launch locomotion_control ddr_bot_world.launch.py # defaults cafe.world
+    ros2 launch locomotion_control duke_bot_world.launch.py world:=smalltown.world
 
 Run the keyboard controller to drive the duke bot. For ddr bot, `keyboard_control_ddr`
 
-    ros2 run hdr_navigation keyboard_control_hdr
+    ros2 run locomotion_control keyboard_control_hdr
 
 <div style="text" align="center">
     <img src="./../assets/test_hdr_world1.png" />
