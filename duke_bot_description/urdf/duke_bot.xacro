@@ -1,9 +1,15 @@
 <?xml version="1.0" ?>
 <robot name="duke_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<xacro:include filename="$(find duke_bot_description)/urdf/materials.xacro" />
-<xacro:include filename="$(find duke_bot_description)/urdf/duke_bot.trans" />
 <xacro:include filename="$(find duke_bot_description)/urdf/duke_bot.gazebo" />
+
+<link name ="footprint_link" />
+<joint name="footprint_joint" type="fixed">
+  <origin xyz="0.0 0.0 0.0" rpy="0 0 1.047" />
+  <parent link="footprint_link"/>
+  <child link="base_link"/>
+</joint>
+
 <link name="base_link">
   <inertial>
     <origin xyz="9.54855897193596e-05 0.000323474174875853 0.0027826964495654915" rpy="0 0 0"/>
@@ -419,6 +425,7 @@
   <parent link="n20_motor_1_1"/>
   <child link="omni_wheel_1_1"/>
   <axis xyz="0.258819 0.965926 -0.0"/>
+  <limit effort="5" velocity="5" />
 </joint>
 
 <joint name="wheel2_joint" type="continuous">
@@ -426,6 +433,7 @@
   <parent link="n20_motor_2_1"/>
   <child link="omni_wheel_2_1"/>
   <axis xyz="-0.965926 -0.258819 -0.0"/>
+  <limit effort="5" velocity="5" />
 </joint>
 
 <joint name="wheel3_joint" type="continuous">
@@ -433,6 +441,7 @@
   <parent link="n20_motor_3_1"/>
   <child link="omni_wheel_3_1"/>
   <axis xyz="0.707107 -0.707107 0.0"/>
+  <limit effort="5" velocity="5" />
 </joint>
 
 <joint name="camera_fix" type="fixed">

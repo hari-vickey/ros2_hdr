@@ -15,7 +15,7 @@ def generate_launch_description():
             os.path.join(get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py'),
         ),
         launch_arguments={
-            'pause': 'true'
+            'pause': 'false'
         }.items()
     )
 
@@ -28,55 +28,34 @@ def generate_launch_description():
     doc = xacro.parse(open(xacro_file))
     xacro.process_doc(doc)
     params = {'robot_description': doc.toxml()}
-    rviz_config_file = os.path.join(duke_bot_description_path, 'config', 'display.rviz')
 
-    node_robot_state_publisher = Node(
+    robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         output='screen',
         parameters=[params]
     )
 
-    rviz_node = Node(
-        package='rviz2',
-        executable='rviz2',
-        name='rviz2',
-        arguments=['-d', rviz_config_file],
-        output='screen'
+    joint_state_publisher_node = Node(
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
+        name='joint_state_publisher'
     )
 
-    spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
-                        arguments=['-topic', 'robot_description',
-                                   '-entity', 'duke_bot',
-                                   '-z', '0.027',],
-                        output='screen')
-
-    load_joint_state_controller = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
-             'joint_state_broadcaster'],
-        output='screen'
-    )
-
-    load_joint_trajectory_controller = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'omni_wheel_controller'],
+    spawn_entity = Node(
+        package='gazebo_ros',
+        executable='spawn_entity.py',
+        arguments= [
+            '-entity', 'duke_bot',
+            '-topic', 'robot_description',
+            '-z', '0.027',
+        ],
         output='screen'
     )
 
     return LaunchDescription([
-        spawn_entity,
         gazebo,
-        node_robot_state_publisher,
-        RegisterEventHandler(
-            event_handler=OnProcessExit(
-                target_action=spawn_entity,
-                on_exit=[load_joint_state_controller],
-            )
-        ),
-        RegisterEventHandler(
-            event_handler=OnProcessExit(
-                target_action=load_joint_state_controller,
-                on_exit=[load_joint_trajectory_controller],
-            )
-        ),
-        # rviz_node
+        robot_state_publisher_node,
+        joint_state_publisher_node,
+        spawn_entity,
     ])

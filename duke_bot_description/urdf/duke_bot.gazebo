@@ -9,44 +9,42 @@
 <xacro:property name="yellow_color" value="Gazebo/Yellow" />
 
 <gazebo>
-  <plugin name="control" filename="libgazebo_ros_control.so"/>
+  <plugin name="ow1_force" filename="libgazebo_ros_force.so">
+    <ros>
+      <remapping>gazebo_ros_force:=ow1_force</remapping>
+    </ros>
+    <link_name>omni_wheel_1_1</link_name>
+    <force_frame>link</force_frame>
+  </plugin>
 </gazebo>
 
-<ros2_control name="GazeboSystem" type="system">
-  <hardware>
-    <plugin>gazebo_ros2_control/GazeboSystem</plugin>
-  </hardware>
-  <joint name="wheel1_joint">
-    <command_interface name="velocity">
-      <param name="min">-100</param>
-      <param name="max">100</param>
-    </command_interface>
-    <state_interface name="position"/>
-    <state_interface name="velocity"/>
-  </joint>
-
-  <joint name="wheel2_joint">
-    <command_interface name="velocity">
-      <param name="min">-100</param>
-      <param name="max">100</param>
-    </command_interface>
-    <state_interface name="position"/>
-    <state_interface name="velocity"/>
-  </joint>
-
-  <joint name="wheel3_joint">
-    <command_interface name="velocity">
-      <param name="min">-100</param>
-      <param name="max">100</param>
-    </command_interface>
-    <state_interface name="position"/>
-    <state_interface name="velocity"/>
-  </joint>
-</ros2_control>
+<gazebo>
+  <plugin name="ow2_force" filename="libgazebo_ros_force.so">
+    <ros>
+      <remapping>gazebo_ros_force:=ow2_force</remapping>
+    </ros>
+    <link_name>omni_wheel_2_1</link_name>
+    <force_frame>link</force_frame>
+  </plugin>
+</gazebo>
 
 <gazebo>
-  <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
-    <parameters>$(find duke_bot_description)/config/controller.yaml</parameters>
+  <plugin name="ow3_force" filename="libgazebo_ros_force.so">
+    <ros>
+      <remapping>gazebo_ros_force:=ow3_force</remapping>
+    </ros>
+    <link_name>omni_wheel_3_1</link_name>
+    <force_frame>link</force_frame>
+  </plugin>
+</gazebo>
+
+<gazebo>
+  <plugin name="object_controller_1" filename="libgazebo_ros_planar_move.so">
+      <ros>
+          <remapping>cmd_vel:=cmd_vel</remapping>
+          <remapping>odom:=odom_pose</remapping>
+        </ros>
+        <robotBaseFrame>footprint_link</robotBaseFrame>
   </plugin>
 </gazebo>
 
@@ -284,5 +282,9 @@
   <mu2>0.2</mu2>
   <self_collide>true</self_collide>
 </gazebo>
+
+<material name="silver">
+  <color rgba="0.700 0.700 0.700 1.000"/>
+</material>
 
 </robot>

@@ -4,7 +4,7 @@
 <name>duke_bot_description</name>
   <version>0.0.0</version>
 <description>The duke_bot_description package</description>
-  <maintainer email="todo@todo.com">author</maintainer>
+  <maintainer email="harivikinesh@gmail.com">Hari Vikinesh</maintainer>
   <license>TODO: License declaration</license>
 
   <depend>xacro</depend>
